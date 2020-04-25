@@ -1,26 +1,21 @@
 import React from "react";
-import { Navbar, NavbarBrand } from "reactstrap";
-import { DISHES } from "./shared/dishes";
-
-import Menu from "./components/menuComponent";
+import "./App.css";
+import Main from "./components/mainComponent";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ConfigStore } from "./redux/configStore";
+const store = ConfigStore();
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES
-    };
-  }
   render() {
     return (
-      <div>
-        <Navbar dark color="info">
-          <div className="container">
-            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className='App'>
+            <Main />
           </div>
-        </Navbar>
-        <Menu dishes={this.state.dishes} />
-      </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
